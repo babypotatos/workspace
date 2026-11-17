@@ -248,8 +248,6 @@ Test 30% ── 최종 모델 확정 후 단 한 번 평가
 
 ## 7. 결론
 
-![분석 결과 요약](images/result_summary.png)
-
 ### 7-1. 연구 질문별 답변
 
 | 질문 | 답 |
@@ -271,9 +269,7 @@ Test 30% ── 최종 모델 확정 후 단 한 번 평가
 
 ### 7-3. 🇯🇵 내가 맡은 일본 파트 — "믿고 다시 사는 저자극 보습 크림"
 
-![일본 SHAP Dependence](images/japan_shap.png)
-
-![일본 현지화 전략](images/japan_strategy.png)
+![SHAP Dependence: 일본 × 보습](images/japan_shap.png)
 
 | 구분 | 결과 |
 |---|---|
