@@ -2,7 +2,7 @@
 
 > 무엇이 집값을 가르는가? — **소득 · 해안 입지 · 공간 권역**, 세 축이 영향력의 78%
 
-📓 분석 과정 전체(코드 포함) : [캘리포니아_주택가격_결정요인.ipynb](캘리포니아_주택가격_결정요인.ipynb)
+📓 분석 과정 전체(코드 포함) : [캘리포니아 주택가격 결정요인.ipynb](<캘리포니아 주택가격 결정요인.ipynb>)
 
 ## 📌 핵심 요약
 
@@ -61,7 +61,7 @@
 
 ### 3-1. 종속변수 — 500,001달러에서 잘린 집값
 
-![종속변수 분포](images/target_dist.png)
+![종속변수 분포](california_images/target_dist.png)
 
 - 우편향(왜도 0.98) — 중앙값 179,700달러 < 평균 206,864달러
 - **500,001달러에 958건(4.7%)** 이 몰려 있다. 실제 가격이 아니라 **조사 상한에서 잘린 값**이다.
@@ -76,14 +76,14 @@
 | 🟡 보류 | `total_rooms` · `households` · `total_bedrooms` · `housing_median_age` | +0.075 ~ +0.205 |
 | ❌ 제외 | `population` | +0.003 (p = 0.681, 비유의) |
 
-![중위 소득과 집값](images/income_scatter.png)
+![중위 소득과 집값](california_images/income_scatter.png)
 
 - 규모 변수는 **구역 전체의 합계**라, 집이 많은 구역일수록 커질 뿐 집값을 잘 설명하지 못한다.
 - 규모 변수 4종은 서로 **ρ ≥ 0.90**으로 같은 정보를 담고 있다 → **비율로 바꾸는 것**이 다음 과제다.
 
 ### 3-3. 해양 근접도 — 실질 구조는 '내륙 vs 해안권'
 
-![해양 근접도 분포](images/ocean_count.png)
+![해양 근접도 분포](california_images/ocean_count.png)
 
 - Welch ANOVA 유의(F = 2,055.8, p < 0.001), 효과크기 **np² = 0.238 (Large)** — 범주형 변수 중 가장 강하다.
 - 평균 : `INLAND` 124,897달러 < `<1H OCEAN` 240,268달러 < `NEAR OCEAN` 249,042달러 < `NEAR BAY` 259,279달러
@@ -116,7 +116,7 @@
 
 ### 4-3. 공간 군집 — 좌표 2개가 5개 권역이 됐다
 
-![공간 군집](images/spatial_cluster.png)
+![공간 군집](california_images/spatial_cluster.png)
 
 | 권역 | 건수 | 평균 집값 | 중심 좌표 (위도, 경도) |
 |---|---|---|---|
@@ -232,7 +232,7 @@
 
 ### 7-2. 변수 중요도 — 세 축이 68%
 
-![변수 중요도](images/feature_importance.png)
+![변수 중요도](california_images/feature_importance.png)
 
 | 변수 | 비율 | 누적 | 판정 |
 |---|---|---|---|
@@ -247,7 +247,7 @@
 
 ### 7-3. 변수 축소 재학습 — 7개 변수 모델을 최종 채택
 
-![학습곡선](images/learning_curve.png)
+![학습곡선](california_images/learning_curve.png)
 
 | 점검 항목 | 축소 전 (10개) | 축소 후 (7개) | 판정 |
 |---|---|---|---|
@@ -263,13 +263,13 @@
 
 ### 8-1. 전역 영향력 — 상위 3개가 78%
 
-![SHAP Bar](images/shap_bar.png)
+![SHAP Bar](california_images/shap_bar.png)
 
 - `income_per_person`(34%) → `ocean_area`(57%) → `spatial_cluster`(78%) — 변수 중요도와 **상위 3개 순서가 같다.** 서로 다른 두 지표가 같은 결론을 낸다.
 
 ### 8-2. 방향과 분포 — 불리한 입지의 벌점이 더 크다
 
-![SHAP Beeswarm](images/shap_beeswarm.png)
+![SHAP Beeswarm](california_images/shap_beeswarm.png)
 
 - **소득은 뚜렷한 증가 관계**다(−0.65 ~ +0.65로 가장 넓게 퍼짐).
 - **입지는 두 덩어리로 분리**되고, 내리는 쪽이 올리는 쪽보다 크다. 내륙은 약 **−24%**, 해안권은 약 **+12%** 로 벌점이 가점의 약 2배다.
@@ -277,7 +277,7 @@
 
 ### 8-3. 권역 효과 — 대도시 해안권만 집값을 올린다
 
-![권역 효과](images/shap_dep_cluster.png)
+![권역 효과](california_images/shap_dep_cluster.png)
 
 | 권역 | SHAP |
 |---|---|
@@ -293,9 +293,9 @@
 | **방 수의 임계효과** | 가구당 방 수가 로그 값 약 1.8을 넘어야 비로소 집값을 올린다. 그보다 작을 때는 영향이 거의 없다 |
 | **침실 비율의 U자** | 침실 비율이 중간인 구역이 오히려 가격에 마이너스이고, 양 끝으로 갈수록 올라간다 |
 
-![방 수의 임계효과](images/shap_dep_rooms.png)
+![방 수의 임계효과](california_images/shap_dep_rooms.png)
 
-![침실 비율의 U자](images/shap_dep_bedrooms.png)
+![침실 비율의 U자](california_images/shap_dep_bedrooms.png)
 
 ---
 
